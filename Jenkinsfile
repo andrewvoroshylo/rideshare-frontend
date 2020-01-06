@@ -23,6 +23,11 @@ node {
         //env.git_commit_id_short = env.git_commit_id.take(7)
         //currentBuild.displayName = "#${currentBuild.number}-${env.git_commit_id_short}"
     }
+    stage('NPM Install') {
+        withEnv(["NPM_CONFIG_LOGLEVEL=warn"]) {
+            sh 'npm install'
+        }
+    }
 
     stage('Lint') {
         sh 'ng lint'
